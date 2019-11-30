@@ -40,8 +40,8 @@ public class OrderController extends BaseController {
      */
     @PostMapping("/addorder")
     @ApiOperation(value = "添加订单", notes = "执行添加订单")
-    public ResultData addOrder(@RequestBody Map<String,Object> data) {
-        Boolean aBoolean = repastService.addOrder(data);
+    public ResultData addOrder(@RequestBody List<OmsOrderVo> omsOrder) {
+        Boolean aBoolean = repastService.addOrder(omsOrder);
         System.out.println(aBoolean);
         if (aBoolean) {
             return operateSuccess();
