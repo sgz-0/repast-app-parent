@@ -132,7 +132,7 @@ public interface IRepastService {
      * @Date 2019/11/22
      */
     @PostMapping("/addorder")
-    Boolean addOrder(@RequestBody Map<String,Object> data);
+    Boolean addOrder(@RequestBody List<OmsOrderVo> omsOrder);
 
     /**
      * @Author Lee
