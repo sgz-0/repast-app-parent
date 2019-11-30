@@ -44,7 +44,7 @@ public class OrderController {
      * @Date 2019/11/22
      */
     @PostMapping("/addorder")
-    public Boolean addOrder(@RequestBody Map<String,Object> data){
+    public Boolean addOrder(@RequestBody List<OmsOrderVo> omsOrder){
         return orderService.addOrder(data);
     }
     /**
