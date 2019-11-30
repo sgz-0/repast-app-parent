@@ -88,7 +88,7 @@ public class RepastFallBackFactory implements FallbackFactory<IRepastService> {
             }
 
             @Override
-            public Boolean addOrder( Map<String,Object> data) {
+            public Boolean addOrder( List<OmsOrderVo> omsOrder) {
                 System.out.println("添加订单熔断数据");
                 return null;
             }
