@@ -7,21 +7,21 @@ import com.aaa.lee.app.domain.OmsOrderItem;
 import com.aaa.lee.app.mapper.OmsCartItemMapper;
 import com.aaa.lee.app.mapper.OmsOrderItemMapper;
 import com.aaa.lee.app.mapper.OmsOrderMapper;
+import com.aaa.lee.app.utils.JSONUtil;
 import com.aaa.lee.app.utils.OrderCodeFactory;
+
 import com.aaa.lee.app.vo.OmsOrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import tk.mybatis.mapper.common.Mapper;
-
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @Company AAA软件教育
@@ -32,7 +32,7 @@ import java.util.Map;
 @Service
 public class OrderService extends BaseService<OmsOrder> {
     @Autowired
-    private OmsOrderMapper omsOrderMapper;
+    private  OmsOrderMapper omsOrderMapper;
     @Autowired
     private OmsOrderItemMapper omsOrderItemMapper;
     @Autowired
@@ -60,17 +60,16 @@ public class OrderService extends BaseService<OmsOrder> {
      * @Date 2019/11/23
      */
     @Transactional
-    public  Boolean addOrder( Map<String,Object> data){
+    public  Boolean addOrder(  List<OmsOrderVo> omsOrder){
 
-        OmsOrder omsOrder1 =new OmsOrder();
+
+        OmsOrder  omsOrder1 =new OmsOrder();
         OmsOrderItem omsOrderItem =  new OmsOrderItem();
         OmsCartItem omsCartItem =new OmsCartItem();
         try{
             Date date = new Date();
             long lTime = date.getTime();
             String orderCode = OrderCodeFactory.getOrderCode(lTime);
-            System.out.println(orderCode);
-            List<OmsOrderVo> omsOrder =(List<OmsOrderVo>) data.get("omsor");
             for (OmsOrderVo omsor :omsOrder){
                 /**
              获取订单中所包含的商品的信息，存入到数据库中
